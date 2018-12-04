@@ -5,8 +5,10 @@
   "dependencies": {
     "aframe": "^0.8.2",
     "aframe-react": "^4.4.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "axios": "^0.18.0",
+    "color-convert": "^1.9.3",
+    "react": "^16.7-alpha",
+    "react-dom": "^16.7-alpha",
     "react-scripts": "2.1.1"
   },
   "scripts": {

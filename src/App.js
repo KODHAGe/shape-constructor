@@ -1,18 +1,26 @@
 import React from 'react';
+import { useState } from 'react';
+
 import './App.css';
 
-import 'aframe';
-import {Entity, Scene} from 'aframe-react';
+import Shape from './components/Shape.js'
+import Input from './components/TextInput.js'
+
+
 
 function App() {
+  const [emotionArray, setEmotionArray] = useState([0,0,0,0,0,0,0,0,0]);
+  
+  function handleOutput(val) {
+    console.log('handleoutput')
+    setEmotionArray(val)
+  }
+
   return (
-  <Scene>
-    <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} position={{x: 0, y: 0, z: -5}}/>
-    <Entity particle-system={{preset: 'snow'}}/>
-    <Entity light={{type: 'point'}}/>
-    <Entity gltf-model={{src: 'virtualcity.gltf'}}/>
-    <Entity text={{value: 'Hello, WebVR!'}}/>
-  </Scene>
+    <div className="input-output">
+      <Input values={handleOutput}/>
+      <Shape emotionArray={emotionArray}/>
+    </div>
   );
 }
 
