@@ -5,7 +5,7 @@ import './TextInput.css'
 
 import axios from 'axios'
 
-import {emotionArray} from '../lib/emo.js'
+import { emotionArray } from '../lib/emo.js'
 
 async function parseText(text) {
   let result = await axios.post(process.env.REACT_APP_DECODER_URL + '/analyse-text', {
@@ -21,8 +21,6 @@ function TextInput(props) {
   useEffect(() => {
     if(text){
       parseText(text).then((data) => {
-        console.log(text)
-        console.log(data)
         props.values(emotionArray(data))
       })
     }

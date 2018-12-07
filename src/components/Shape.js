@@ -3,24 +3,29 @@ import { useState, useEffect } from 'react';
 import './Shape.css'
 
 import 'aframe'
-import {Entity, Scene} from 'aframe-react'
+import { Entity, Scene } from 'aframe-react'
 
-import {shape} from '../lib/totem.js'
+import { shape } from '../lib/totem.js'
 
 
 function Shape(props) {
-  const [params, setParams] = useState({})
+  const [entities, setEntities] = useState([])
 
   useEffect(() => {
-    let newparams = shape(props.emotionArray)
+    let newparams = shape(props.emotionsArray)
     newparams.then((value) => {
-      setParams(value)
+      let entitylist = []
+      for (let i = 0; i < value.length; i++) {
+        value[i].position = "0 "+i+" -3" // test positioning
+        entitylist.push(<Entity key={i} primitive={value[i].primitive} color={value[i].color} position={value[i].position} height={value[i].height} width={value[i].width} radius={value[i].radius} radius-tubular={value[i].radiusTubular} depth={value[i].depth} rotation={value[i].rotation}/>)
+      }
+      setEntities(entitylist)
     })
-  }, [props.emotionArray])
+  }, [props.emotionsArray])
 
   return (
   <Scene>
-    <Entity primitive={params.primitive} color={params.color} position={params.position} height={params.height} width={params.width} radius={params.radius} radius-tubular={params.radiusTubular} depth={params.depth} rotation={params.rotation}/>
+    {entities}
   </Scene>
   );
 }

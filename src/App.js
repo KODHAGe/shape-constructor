@@ -9,17 +9,18 @@ import Input from './components/TextInput.js'
 
 
 function App() {
-  const [emotionArray, setEmotionArray] = useState([0,0,0,0,0,0,0,0,0]);
+  const [emotionsArray, setEmotionsArray] = useState([[0,0,0,0,0,0,0,0,0]]);
   
   function handleOutput(val) {
-    console.log('handleoutput')
-    setEmotionArray(val)
+    let newEmotionsArray = JSON.parse(JSON.stringify(emotionsArray))
+    newEmotionsArray.push(val)
+    setEmotionsArray(newEmotionsArray)
   }
 
   return (
     <div className="input-output">
       <Input values={handleOutput}/>
-      <Shape emotionArray={emotionArray}/>
+      <Shape emotionsArray={emotionsArray}/>
     </div>
   );
 }
