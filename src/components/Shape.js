@@ -9,8 +9,10 @@ import { shape } from '../lib/totem.js'
 
 async function createShape(value) {
   let entitylist = []
+  let accruedHeight = 0;
   for (let i = 0; i < value.length; i++) {
-    value[i].position = "0 " + value[i].visualHeight * 2 + " -6" // test positioning
+    value[i].position = "0 " + accruedHeight * 0.7 /* magical multiplier to be determined */ + " -6" // test positioning
+    accruedHeight += value[i].visualHeight
     entitylist.push(<Entity 
       key={i}
       material={{"transparent": true, "opacity": value[i].opacity, "roughness": value[i].gloss}}
@@ -49,7 +51,7 @@ function Shape(props) {
     <Entity light="type: ambient; color: #CCC"></Entity>
     <Entity light="type: point; intensity: 0.75; distance: 50; decay: 2" position="0 10 10"></Entity>
     <Entity id="cameraRig" rotation="0 0 0">
-      <Entity position="0 0 -5" camera look-controls wasd-controls={{"fly": "true"}}></Entity>
+      <Entity position="0 0.5 -5" camera look-controls wasd-controls={{"fly": "true"}}></Entity>
     </Entity>
     {entities}
   </Scene>

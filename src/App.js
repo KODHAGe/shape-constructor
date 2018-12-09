@@ -6,15 +6,15 @@ import './App.css';
 import Shape from './components/Shape.js'
 import Input from './components/TextInput.js'
 
+// TESTS, TUFF
+// import { parsedResponses, parsedResponses3 } from './test-material/responses.js'
 
 
 function App() {
   const [emotionsArray, setEmotionsArray] = useState([]);
   
   function handleOutput(val) {
-    let newEmotionsArray = JSON.parse(JSON.stringify(emotionsArray))
-    newEmotionsArray.push(val)
-    setEmotionsArray(newEmotionsArray)
+    setEmotionsArray(val)
   }
 
   return (

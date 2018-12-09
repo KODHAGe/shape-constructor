@@ -167,7 +167,86 @@ let textOne = [
   }
 ]
 
+let textThree = [
+  {
+    "visualHeight": 0.25992685317993164,
+    "primitive": "a-sphere",
+    "color": "#B3C745",
+    "opacity": 0.8451873016357422,
+    "position": "0 0.5198537063598633 -6",
+    "gloss": 0.9443563744425774,
+    "scale": "0.3998874664306641 0.3998874664306641 0.3998874664306641",
+    "radius": 0.29,
+    "width": 0.54,
+    "height": 0.65,
+    "radiusTubular": 0.065,
+    "depth": 0.56,
+    "rotation": "40 26 19"
+  },
+  {
+    "visualHeight": 0.382368994140625,
+    "primitive": "a-sphere",
+    "color": "#8EFF59",
+    "opacity": 1.1605443572998047,
+    "position": "0 0.76473798828125 -6",
+    "gloss": 0.5024566054344177,
+    "scale": "0.5974515533447265 0.5974515533447265 0.5974515533447265",
+    "radius": 0.29,
+    "width": 0.59,
+    "height": 0.64,
+    "radiusTubular": 0.064,
+    "depth": 0.62,
+    "rotation": "47 46 36"
+  },
+  {
+    "visualHeight": 0.25992685317993164,
+    "primitive": "a-sphere",
+    "color": "#B3C745",
+    "opacity": 0.8451873016357422,
+    "position": "0 0.5198537063598633 -6",
+    "gloss": 0.9443563744425774,
+    "scale": "0.3998874664306641 0.3998874664306641 0.3998874664306641",
+    "radius": 0.29,
+    "width": 0.54,
+    "height": 0.65,
+    "radiusTubular": 0.065,
+    "depth": 0.56,
+    "rotation": "40 26 19"
+  },
+  {
+    "visualHeight": 0.42054541015625,
+    "primitive": "a-sphere",
+    "color": "#76EB52",
+    "opacity": 0.9868504333496094,
+    "position": "0 0.8410908203125 -6",
+    "gloss": 0.8781406208872795,
+    "scale": "0.5256817626953125 0.5256817626953125 0.5256817626953125",
+    "radius": 0.35,
+    "width": 0.82,
+    "height": 0.8,
+    "radiusTubular": 0.08,
+    "depth": 0.79,
+    "rotation": "51 39 36"
+  },
+  {
+    "visualHeight": 0.37974940338134766,
+    "primitive": "a-sphere",
+    "color": "#91FF59",
+    "opacity": 1.1243795013427735,
+    "position": "0 0.7594988067626953 -6",
+    "gloss": 0.5727371573448181,
+    "scale": "0.5753778839111328 0.5753778839111328 0.5753778839111328",
+    "radius": 0.3,
+    "width": 0.61,
+    "height": 0.66,
+    "radiusTubular": 0.066,
+    "depth": 0.64,
+    "rotation": "46 43 35"
+  }
+]
+
 export {
   allPrimitives,
-  textOne
+  textOne,
+  textThree
 }
