@@ -9,7 +9,8 @@
     "color-convert": "^1.9.3",
     "react": "^16.7-alpha",
     "react-dom": "^16.7-alpha",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "sbd": "^1.0.14"
   },
   "scripts": {
     "start": "react-scripts start",

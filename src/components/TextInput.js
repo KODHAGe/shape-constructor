@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import './TextInput.css'
 
 import axios from 'axios'
+import tokenizer from 'sbd'
 
+import { texts } from '../test-material/texts.js'
 import { emotionArray } from '../lib/emo.js'
 
 async function parseText(text) {
@@ -20,9 +22,14 @@ function TextInput(props) {
 
   useEffect(() => {
     if(text){
-      parseText(text).then((data) => {
-        props.values(emotionArray(data))
-      })
+      let sentences = tokenizer.sentences(text)
+      let emotionArrays = []
+      for(let i = 0; i < sentences.length; i++) {
+        parseText(sentences[i]).then((data) => {
+          emotionArrays.push(emotionArray(data))
+        })
+      }
+      props.values(emotionArrays)
     }
   }, [text]);
 

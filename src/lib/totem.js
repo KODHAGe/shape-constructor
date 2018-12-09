@@ -1,9 +1,15 @@
 import axios from 'axios'
 import colorConvert from 'color-convert'
 
+// TEST STUFF
+// import { allPrimitives, textOne } from '../test-material/testHelpers.js'
+// import { parsedResponses } from '../test-material/responses.js'
+
 async function getPrediction(array) {
   let parameterArray = []
+  //  return textOne
   if(Array.isArray(array)){
+    // array = parsedResponses
     for(let emo of array) {
       try {
         let data = await axios.post(process.env.REACT_APP_INTERPRETER_URL + '/makePrediction', {
@@ -11,12 +17,20 @@ async function getPrediction(array) {
           'jwt': process.env.REACT_APP_JWT
         })
         let prediction = data.data
-        let color = '#' + colorConvert.hsl.hex([prediction.sliderValueHue, 95, prediction.sliderValueLightness])
+        let lightness = ((prediction.sliderValueLightness > 100) ? 100 : prediction.sliderValueLightness)
+        let color = '#' + colorConvert.hsv.hex([prediction.sliderValueHue, 65, lightness])
         let primitive = 'a-' + Object.keys(prediction.shapes).reduce((a, b) => prediction.shapes[a] > prediction.shapes[b] ? a : b)
+        if(primitive === 'a-ellipsoid') {
+          primitive = 'a-sphere'
+        }
         let parameterObject = {
+          'visualHeight': (parseInt(prediction.sliderValueHeight)/100)*(prediction.sliderValueScale/100),
           'primitive': primitive,
           'color': color,
+          'opacity': prediction.sliderValueOpacity / 100,
           'position': '0 1.5 -3',
+          'gloss': 1 - prediction.sliderValueMatte,
+          'scale': prediction.sliderValueScale/100 + ' ' + prediction.sliderValueScale/100 + ' ' + prediction.sliderValueScale/100,
           'radius': parseInt(prediction.sliderValueRadius)/100,
           'width': parseInt(prediction.sliderValueWidth)/100,
           'height': parseInt(prediction.sliderValueHeight)/100,
@@ -29,6 +43,7 @@ async function getPrediction(array) {
         return error
       }
     }
+    console.log(parameterArray)
     return parameterArray
   }
 }

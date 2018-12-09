@@ -19,5 +19,11 @@ export function emotionArray(data) {
     let index = emotionsOrder.indexOf(emotions[i].tone_id)
     output[index] = emotions[i].score
   }
+  if(data.sentiment && data.sentiment > 0) {
+    output[8] = data.sentiment
+  } else {
+    output[7] = Math.abs(data.sentiment)
+  }
+  console.log(output)
   return output
 }
