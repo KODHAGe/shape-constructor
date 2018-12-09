@@ -9,7 +9,7 @@ import Input from './components/TextInput.js'
 
 
 function App() {
-  const [emotionsArray, setEmotionsArray] = useState([[0,0,0,0,0,0,0,0,0]]);
+  const [emotionsArray, setEmotionsArray] = useState([]);
   
   function handleOutput(val) {
     let newEmotionsArray = JSON.parse(JSON.stringify(emotionsArray))

@@ -7,35 +7,41 @@ import { Entity, Scene } from 'aframe-react'
 
 import { shape } from '../lib/totem.js'
 
+async function createShape(value) {
+  let entitylist = []
+  for (let i = 0; i < value.length; i++) {
+    value[i].position = "0 " + value[i].visualHeight * 2 + " -6" // test positioning
+    entitylist.push(<Entity 
+      key={i}
+      material={{"transparent": true, "opacity": value[i].opacity, "roughness": value[i].gloss}}
+      primitive={value[i].primitive}
+      color={value[i].color}
+      position={value[i].position}
+      height={value[i].height}
+      width={value[i].width}
+      radius={value[i].radius}
+      radius-tubular={value[i].radiusTubular}
+      depth={value[i].depth}
+      rotation={value[i].rotation}
+      radius-bottom={value[i].radiusBottom}
+      scale={value[i].scale}
+      radius-top="0"
+      />)
+  }
+  return entitylist
+}
 
 function Shape(props) {
   const [entities, setEntities] = useState([])
 
   useEffect(() => {
-    let newparams = shape(props.emotionsArray)
-    newparams.then((value) => {
-      let entitylist = []
-      for (let i = 0; i < value.length; i++) {
-        value[i].position = "0 " + value[i].visualHeight * 2 + " -6" // test positioning
-        entitylist.push(<Entity 
-          key={i}
-          material={{"transparent": true, "opacity": value[i].opacity, "roughness": value[i].gloss}}
-          primitive={value[i].primitive}
-          color={value[i].color}
-          position={value[i].position}
-          height={value[i].height}
-          width={value[i].width}
-          radius={value[i].radius}
-          radius-tubular={value[i].radiusTubular}
-          depth={value[i].depth}
-          rotation={value[i].rotation}
-          radius-bottom={value[i].radiusBottom}
-          scale={value[i].scale}
-          radius-top="0"
-          />)
-      }
-      setEntities(entitylist)
-    })
+    if(!props.emotionsArray.length == 0) {
+      shape(props.emotionsArray).then(function(params) {
+        createShape(params).then(function(entities) {
+          setEntities(entities)
+        })
+      })
+    }
   }, [props.emotionsArray])
 
   return (

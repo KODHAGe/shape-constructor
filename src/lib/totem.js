@@ -8,9 +8,10 @@ import colorConvert from 'color-convert'
 async function getPrediction(array) {
   let parameterArray = []
   //  return textOne
-  if(Array.isArray(array)){
+  if(Array.isArray(array[0])){
     // array = parsedResponses
-    for(let emo of array) {
+    for(let emo of array[0]) {
+      console.log(emo)
       try {
         let data = await axios.post(process.env.REACT_APP_INTERPRETER_URL + '/makePrediction', {
           'array': emo,
@@ -43,11 +44,10 @@ async function getPrediction(array) {
         return error
       }
     }
-    console.log(parameterArray)
     return parameterArray
   }
 }
 
-export function shape(array) {
+export async function shape(array) {
   return getPrediction(array)
 }

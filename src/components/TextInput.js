@@ -1,13 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-
 import './TextInput.css'
-
 import axios from 'axios'
 import tokenizer from 'sbd'
+import { emotionArray } from '../lib/emo.js'
 
 import { texts } from '../test-material/texts.js'
-import { emotionArray } from '../lib/emo.js'
+
 
 async function parseText(text) {
   let result = await axios.post(process.env.REACT_APP_DECODER_URL + '/analyse-text', {
@@ -25,11 +24,11 @@ function TextInput(props) {
       let sentences = tokenizer.sentences(text)
       let emotionArrays = []
       for(let i = 0; i < sentences.length; i++) {
-        parseText(sentences[i]).then((data) => {
-          emotionArrays.push(emotionArray(data))
-        })
+        emotionArrays.push(emotionArray(parseText(sentences[i])))
       }
-      props.values(emotionArrays)
+      Promise.all(emotionArrays).then((data) => {
+        props.values(data)
+      })
     }
   }, [text]);
 

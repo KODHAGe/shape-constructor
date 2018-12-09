@@ -11,7 +11,8 @@ let emotionsOrder = [
 ]
 
 
-export function emotionArray(data) {
+export async function emotionArray(data) {
+  data = await data
   let output = [0,0,0,0,0,0,0,0,0]
 
   let emotions = data.detectedEmotions
@@ -24,6 +25,5 @@ export function emotionArray(data) {
   } else {
     output[7] = Math.abs(data.sentiment)
   }
-  console.log(output)
   return output
 }
