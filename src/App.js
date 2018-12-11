@@ -7,20 +7,22 @@ import Shape from './components/Shape.js'
 import Input from './components/TextInput.js'
 
 // TESTS, TUFF
-// import { parsedResponses, parsedResponses3 } from './test-material/responses.js'
-
+import { parsedResponses } from './test-material/responses.js'
+import { parsedText } from './test-material/texts.js'
 
 function App() {
-  const [emotionsArray, setEmotionsArray] = useState([]);
+  const [emotionsArray, setEmotionsArray] = useState(parsedResponses);
+  const [textsArray, setTextsArray] = useState(parsedText);
   
-  function handleOutput(val) {
+  function handleOutput(val, text) {
     setEmotionsArray(val)
+    setTextsArray(text)
   }
 
   return (
     <div className="input-output">
       <Input values={handleOutput}/>
-      <Shape emotionsArray={emotionsArray}/>
+      <Shape emotionsArray={emotionsArray} textsArray={textsArray}/>
     </div>
   );
 }

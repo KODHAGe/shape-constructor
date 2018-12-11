@@ -27,7 +27,7 @@ function TextInput(props) {
         emotionArrays.push(emotionArray(parseText(sentences[i])))
       }
       Promise.all(emotionArrays).then((data) => {
-        props.values(data)
+        props.values(data, sentences)
       })
     }
   }, [text]);

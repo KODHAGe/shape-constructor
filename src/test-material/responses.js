@@ -642,8 +642,56 @@ let parsedResponses3 = [
     0.5
   ]
 ]
+
+let parsedResponses4 = [
+  [
+    0,
+    0,
+    0.779672,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0.5
+  ],
+  [
+    0,
+    0,
+    0,
+    0.500782,
+    0,
+    0,
+    0,
+    0,
+    0.09531259536743164
+  ],
+  [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0.5
+  ],
+  [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0.8231716752052307
+  ]
+]
 export {
   responses,
   parsedResponses,
-  parsedResponses3
+  parsedResponses3,
+  parsedResponses4
 }
