@@ -39,7 +39,7 @@ async function createShape(value, emotions, texts) {
     }
     let objectHeight = value[i].height * value[i].scaleValue * lengthMultiplier
     let visualHeight = objectHeight/2
-    value[i].position = "0 " + (accruedHeight + visualHeight) + " -6" // test positioning
+    value[i].position = "0 " + (accruedHeight + visualHeight) * (1 - avgDifference) + " -6" // test positioning
     accruedHeight += objectHeight
 
     // Combine shape
