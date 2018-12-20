@@ -18,7 +18,7 @@ async function getPrediction(array) {
           primitive = 'a-sphere'
         }
         let parameterObject = {
-          'visualHeight': (parseInt(prediction.sliderValueHeight)/100)*(prediction.sliderValueScale/100),
+          'scaleValue': prediction.sliderValueScale/100,
           'primitive': primitive,
           'color': color,
           'opacity': prediction.sliderValueOpacity / 100,

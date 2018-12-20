@@ -4,7 +4,7 @@ import './Shape.css'
 
 import 'aframe'
 import 'aframe-effects'
-import { Entity, Scene } from 'aframe-react'
+import { Entity, Scene } from 'aframe-react' // I guess this is rather deprecated, refactor to https://www.npmjs.com/package/aframe-state-component at some point
 
 import { shape } from '../lib/totem.js'
 
@@ -19,10 +19,30 @@ let handleClick = (event) => {
 
 async function createShape(value, emotions, texts) {
   let entitylist = []
-  let accruedHeight = 0;
+  let accruedHeight = 0
+  let average = texts.join('').length / texts.length
   for (let i = 0; i < value.length; i++) {
-    value[i].position = "0 " + accruedHeight * 0.7 /* magical multiplier to be determined */ + " -6" // test positioning
-    accruedHeight += value[i].visualHeight
+
+    // Determine size multiplier & apply
+    let lengthMultiplier = texts[i].length/average
+    let scale = value[i].scale.split(' ')
+    scale = scale.map((x) => x * lengthMultiplier)
+    scale = scale.join(' ')
+
+    // Determine position
+    let avgDifference = 0
+    if(emotions[i - 1]) { // If previous object exists
+      let diff = emotions[i - 1].map((item, index) => {
+        return item - emotions[i][index]
+      })
+      avgDifference = diff.reduce((a, b) => a + b) / diff.length
+    }
+    let objectHeight = value[i].height * value[i].scaleValue * lengthMultiplier
+    let visualHeight = objectHeight/2
+    value[i].position = "0 " + (accruedHeight + visualHeight) + " -6" // test positioning
+    accruedHeight += objectHeight
+
+    // Combine shape
     entitylist.push(<Entity
       key={i}
       events={{click: handleClick}}
@@ -30,14 +50,14 @@ async function createShape(value, emotions, texts) {
       primitive={value[i].primitive}
       color={value[i].color}
       position={value[i].position}
-      height={value[i].height}
+      height={value[i].height * lengthMultiplier}
       width={value[i].width}
       radius={value[i].radius}
       radius-tubular={value[i].radiusTubular}
       depth={value[i].depth}
       rotation={value[i].rotation}
       radius-bottom={value[i].radiusBottom}
-      scale={value[i].scale}
+      scale={scale}
       radius-top="0"
       data={JSON.stringify(value[i])}
       emotions={JSON.stringify(emotions[i])}
@@ -61,7 +81,6 @@ function Shape(props) {
       })
     }
   }, [props.emotionsArray, props.textsArray])
-  console.log(entities)
 
   return (
   <Scene inspector="https://cdn.jsdelivr.net/npm/aframe-inspector@0.8.5/dist/aframe-inspector.min.js">
