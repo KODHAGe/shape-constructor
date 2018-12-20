@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aframe": "^0.8.2",
+    "aframe": "aframevr/aframe#master",
+    "aframe-effects": "^0.8.0",
     "aframe-react": "^4.4.0",
     "axios": "^0.18.0",
     "color-convert": "^1.9.3",
-    "react": "^16.7-alpha",
-    "react-dom": "^16.7-alpha",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "@next",
     "react-scripts": "2.1.1",
     "sbd": "^1.0.14"
   },

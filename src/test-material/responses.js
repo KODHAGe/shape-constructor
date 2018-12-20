@@ -689,9 +689,54 @@ let parsedResponses4 = [
     0.8231716752052307
   ]
 ]
+
+function allEmotions () {
+  let emotions = [
+    'anger',
+    'fear',
+    'joy',
+    'sadness',
+    'analytical',
+    'confident',
+    'tentative',
+    'negative',
+    'positive'
+  ]
+  let arrayholder = []
+  for (let n = 0; n < emotions.length; n++) {
+    let array = [0,0,0,0,0,0,0,0,0]
+    for (let i = n; i < emotions.length; i++) {
+      array[i] = 1
+      arrayholder.push(JSON.parse(JSON.stringify(array)) )
+    }
+  }
+  for (let n = emotions.length - 1; n > 0; n--) {
+    let array = [0,0,0,0,0,0,0,0,0]
+    for (let i = n; i > 0; i--  ) {
+      array[i] = 1
+      arrayholder.push(JSON.parse(JSON.stringify(array)) )
+    }
+  }
+  console.log(arrayholder)
+  return arrayholder
+
+  let array = [
+    [1,0,0,0,0,0,0,0,0],
+    [0,1,0,0,0,0,0,0,0],
+    [0,0,1,0,0,0,0,0,0],
+    [0,0,0,1,0,0,0,0,0],
+    [0,0,0,0,1,0,0,0,0],
+    [0,0,0,0,0,1,0,0,0],
+    [0,0,0,0,0,0,1,0,0],
+    [0,0,0,0,0,0,0,1,0],
+    [0,0,0,0,0,0,0,0,1]
+  ]
+  return array
+}
 export {
   responses,
   parsedResponses,
   parsedResponses3,
-  parsedResponses4
+  parsedResponses4,
+  allEmotions
 }

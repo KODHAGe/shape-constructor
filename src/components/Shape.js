@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 import './Shape.css'
 
 import 'aframe'
+import 'aframe-effects'
 import { Entity, Scene } from 'aframe-react'
 
 import { shape } from '../lib/totem.js'
 
 let handleClick = (event) => {
-  event.target.setAttribute('color', 'red')
   let data = event.target.getAttribute('data')
   let emotions = event.target.getAttribute('emotions')
   let text = event.target.getAttribute('content')
@@ -25,7 +25,7 @@ async function createShape(value, emotions, texts) {
     accruedHeight += value[i].visualHeight
     entitylist.push(<Entity
       key={i}
-      events={{mousedown: handleClick}}
+      events={{click: handleClick}}
       material={{"transparent": true, "opacity": value[i].opacity, "roughness": value[i].gloss}}
       primitive={value[i].primitive}
       color={value[i].color}
@@ -61,17 +61,15 @@ function Shape(props) {
       })
     }
   }, [props.emotionsArray, props.textsArray])
+  console.log(entities)
 
   return (
-  <Scene>
-    <Entity light="type: ambient; color: #CCC"></Entity>
+  <Scene inspector="https://cdn.jsdelivr.net/npm/aframe-inspector@0.8.5/dist/aframe-inspector.min.js">
+  <Entity light="type: ambient; color: #CCC"></Entity>
     <Entity light="type: point; intensity: 0.75; distance: 50; decay: 2" position="0 10 10"></Entity>
-    <Entity id="cameraRig" rotation="0 0 0">
-      <Entity position="0 0.5 -5" camera look-controls wasd-controls={{"fly": "true"}}>
-        <Entity cursor="fuseTimeout: 500"
-              position="0 0 -0.5"
-              geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.007"
-              material="color: black; shader: flat">
+    <Entity id="cameraRig" rotation="0 0 0" position="0 0 -5">
+      <Entity camera look-controls mouse-cursor wasd-controls={{"fly": "true"}}>
+        <Entity cursor="fuseTimeout: 500;rayOrigin: mouse;">
         </Entity>
       </Entity>
     </Entity>

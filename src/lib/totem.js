@@ -28,6 +28,7 @@ async function getPrediction(array) {
           'radius': parseInt(prediction.sliderValueRadius)/100,
           'width': parseInt(prediction.sliderValueWidth)/100,
           'height': parseInt(prediction.sliderValueHeight)/100,
+          'radiusBottom': parseInt(prediction.sliderValueRadius)/100,
           'radiusTubular': parseInt(prediction.sliderValueHeight)/1000,
           'depth': parseInt(prediction.sliderValueLength)/100,
           'rotation': parseInt(prediction.sliderValueRotX) + ' ' + parseInt(prediction.sliderValueRotY) + ' ' + parseInt(prediction.sliderValueRotZ)
