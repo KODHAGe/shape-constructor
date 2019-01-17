@@ -20,27 +20,36 @@ let handleClick = (event) => {
 async function createShape(value, emotions, texts) {
   let entitylist = []
   let accruedHeight = 0
-  let average = texts.join('').length / texts.length
+  let average = texts ? texts.join('').length / texts.length : ''
+  let row = 0
   for (let i = 0; i < value.length; i++) {
-
+    let lengthMultiplier = 1
+    let scale = value[i].scale
     // Determine size multiplier & apply
-    let lengthMultiplier = texts[i].length/average
-    let scale = value[i].scale.split(' ')
-    scale = scale.map((x) => x * lengthMultiplier)
-    scale = scale.join(' ')
+    if(texts[i]) {
+      lengthMultiplier = texts[i].length/average
+      scale = value[i].scale.split(' ')
+      scale = scale.map((x) => x /* lengthMultiplier*/)
+      scale = scale.join(' ')
+    }
 
     // Determine position
     let avgDifference = 0
     if(emotions[i - 1]) { // If previous object exists
       let diff = emotions[i - 1].map((item, index) => {
-        return item - emotions[i][index]
+        return item - emotions[i][index] // Calculate difference in all emotions to previous object
       })
       avgDifference = diff.reduce((a, b) => a + b) / diff.length
     }
     let objectHeight = value[i].height * value[i].scaleValue * lengthMultiplier
-    let visualHeight = objectHeight/2
-    value[i].position = "0 " + (accruedHeight + visualHeight) * (1 - avgDifference) + " -6" // test positioning
+    value[i].position = "0 " + ((((objectHeight) + accruedHeight) / 2 ) * (1 - Math.abs(avgDifference))) + " -6"
     accruedHeight += objectHeight
+    
+    /* matrix
+    if(i % 10 === 0) {
+      row++
+      accruedHeight = 0
+    }*/
 
     // Combine shape
     entitylist.push(<Entity
@@ -84,14 +93,9 @@ function Shape(props) {
 
   return (
   <Scene inspector="https://cdn.jsdelivr.net/npm/aframe-inspector@0.8.5/dist/aframe-inspector.min.js">
-  <Entity light="type: ambient; color: #CCC"></Entity>
+    <Entity light="type: ambient; color: #CCC"></Entity>
     <Entity light="type: point; intensity: 0.75; distance: 50; decay: 2" position="0 10 10"></Entity>
-    <Entity id="cameraRig" rotation="0 0 0" position="0 0 -5">
-      <Entity camera look-controls mouse-cursor wasd-controls={{"fly": "true"}}>
-        <Entity cursor="fuseTimeout: 500;rayOrigin: mouse;">
-        </Entity>
-      </Entity>
-    </Entity>
+    <Entity camera="active: true" position="0 0 0" look-controls mouse-cursor wasd-controls={{"fly": "true"}}></Entity>
     {entities}
   </Scene>
   );

@@ -11,8 +11,8 @@ import { parsedResponses, allEmotions } from './test-material/responses.js'
 import { parsedText } from './test-material/texts.js'
 
 function App() {
-  const [emotionsArray, setEmotionsArray] = useState(parsedResponses);
-  const [textsArray, setTextsArray] = useState(parsedText);
+  const [emotionsArray, setEmotionsArray] = useState('');
+  const [textsArray, setTextsArray] = useState('');
   
   function handleOutput(val, text) {
     setEmotionsArray(val)
