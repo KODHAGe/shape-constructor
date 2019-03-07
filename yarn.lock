@@ -918,16 +918,13 @@ aframe-effects@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/aframe-effects/-/aframe-effects-0.8.0.tgz#be9c546270314f5b4264303302d1759c103fd45e"
 
-aframe-react@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/aframe-react/-/aframe-react-4.4.0.tgz#f8af660bc4f64746d7cddb065ad9cc5e88f358b9"
-
-aframe@aframevr/aframe#master:
-  version "0.8.2"
-  resolved "https://codeload.github.com/aframevr/aframe/tar.gz/56273bb219ade95c704805d212bb571631651a52"
+aframe@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/aframe/-/aframe-0.9.0.tgz#da57790fe5a9d1d2cb5c7c05daaec20c34b30f35"
   dependencies:
     animejs "^2.2.0"
     browserify-css "^0.8.4"
+    custom-event-polyfill "^1.0.6"
     debug ngokevin/debug#noTimestamp
     deep-assign "^2.0.0"
     document-register-element dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90
@@ -937,9 +934,9 @@ aframe@aframevr/aframe#master:
     present "0.0.6"
     promise-polyfill "^3.1.0"
     style-attr "^1.0.2"
-    three dmarcos/three.js#webXRSupport
+    super-three "^0.101.0"
     three-bmfont-text "^2.1.0"
-    webvr-polyfill "^0.10.8"
+    webvr-polyfill "^0.10.10"
 
 ajv-errors@^1.0.0:
   version "1.0.0"
@@ -2444,6 +2441,10 @@ cssstyle@^1.0.0, cssstyle@^1.1.1:
   resolved "https://registry.yarnpkg.com/cssstyle/-/cssstyle-1.1.1.tgz#18b038a9c44d65f7a8e428a653b9f6fe42faf5fb"
   dependencies:
     cssom "0.3.x"
+
+custom-event-polyfill@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/custom-event-polyfill/-/custom-event-polyfill-1.0.6.tgz#6b026e81cd9f7bc896bd6b016a427407bb068db1"
 
 cyclist@~0.2.2:
   version "0.2.2"
@@ -8206,6 +8207,10 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
+super-three@^0.101.0:
+  version "0.101.0"
+  resolved "https://registry.yarnpkg.com/super-three/-/super-three-0.101.0.tgz#81b64178b7ec2220bb23715dc61f7d3f1ba7ef74"
+
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
@@ -8324,10 +8329,6 @@ three-buffer-vertex-data@^1.0.0:
   resolved "https://registry.yarnpkg.com/three-buffer-vertex-data/-/three-buffer-vertex-data-1.1.0.tgz#cf228e78427665884b961a4cabe1f85ed39f82b1"
   dependencies:
     flatten-vertex-data "^1.0.0"
-
-three@dmarcos/three.js#webXRSupport:
-  version "0.98.0"
-  resolved "https://codeload.github.com/dmarcos/three.js/tar.gz/240653aa7d88fcaabd58510900a0176f4e5861d7"
 
 throat@^4.0.0:
   version "4.1.0"
@@ -8838,7 +8839,7 @@ webvr-polyfill-dpdb@^1.0.11:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/webvr-polyfill-dpdb/-/webvr-polyfill-dpdb-1.0.11.tgz#bf059fcac45f74d48358a430c87834fbe4bb4077"
 
-webvr-polyfill@^0.10.8:
+webvr-polyfill@^0.10.10:
   version "0.10.10"
   resolved "https://registry.yarnpkg.com/webvr-polyfill/-/webvr-polyfill-0.10.10.tgz#f945759a37a2ada57211ed29cf55a80179e74d26"
   dependencies:

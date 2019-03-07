@@ -13,9 +13,9 @@ async function getPrediction(array) {
         let prediction = data.data
         let lightness = ((prediction.sliderValueLightness > 100) ? 100 : prediction.sliderValueLightness)
         let color = '#' + colorConvert.hsv.hex([prediction.sliderValueHue, 65, lightness])
-        let primitive = 'a-' + Object.keys(prediction.shapes).reduce((a, b) => prediction.shapes[a] > prediction.shapes[b] ? a : b)
-        if(primitive === 'a-ellipsoid') {
-          primitive = 'a-sphere'
+        let primitive = Object.keys(prediction.shapes).reduce((a, b) => prediction.shapes[a] > prediction.shapes[b] ? a : b)
+        if(primitive === 'ellipsoid') {
+          primitive = 'sphere'
         }
         let parameterObject = {
           'scaleValue': prediction.sliderValueScale/100,
@@ -31,7 +31,9 @@ async function getPrediction(array) {
           'radiusBottom': parseInt(prediction.sliderValueRadius)/100,
           'radiusTubular': parseInt(prediction.sliderValueHeight)/1000,
           'depth': parseInt(prediction.sliderValueLength)/100,
-          'rotation': parseInt(prediction.sliderValueRotX) + ' ' + parseInt(prediction.sliderValueRotY) + ' ' + parseInt(prediction.sliderValueRotZ)
+          'rotationX': parseInt(prediction.sliderValueRotX),
+          'rotationY': parseInt(prediction.sliderValueRotY),
+          'rotationZ': parseInt(prediction.sliderValueRotZ)
         }
         parameterArray.push(parameterObject)
       } catch(error) {
